@@ -1,0 +1,16 @@
+
+cc-master/src$ bison -d e1.y -Wcounterexamples
+
+e1.y: aviso: 1 conflito de deslocamento/redução [-Wconflicts-sr]
+e1.y: aviso: conflito de deslocamento/redução no token ELSE [-Wcounterexamples]
+  Exemplo: IF LEFT_BRACKET expression RIGHT_BRACKET IF LEFT_BRACKET expression RIGHT_BRACKET statement • ELSE statement
+  Derivação do deslocamento
+    selection-stmt
+    ↳ IF LEFT_BRACKET expression RIGHT_BRACKET statement
+                                               ↳ selection-stmt
+                                                 ↳ IF LEFT_BRACKET expression RIGHT_BRACKET statement • ELSE statement
+  Derivação de redução
+    selection-stmt
+    ↳ IF LEFT_BRACKET expression RIGHT_BRACKET statement                                                ELSE statement
+                                               ↳ selection-stmt
+                                                 ↳ IF LEFT_BRACKET expression RIGHT_BRACKET statement •

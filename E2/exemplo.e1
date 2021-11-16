@@ -1,0 +1,18 @@
+/* exemplo.e1
+   programa na linguagem E1 sem erros léxicos nem sintáticos
+   palavras-chave: const int return void
+   simbolos: +  -  *  /  =  ;   (  ) { }   // ERRATA */
+
+
+void main(void) { 
+int b; int c; int qum;
+int abar;
+
+abar = 40;
+c = b*b+abar;/*ERRATA: inserido */ {
+
+return qum = c/(c-a);
+
+
+
+} /*ERRATA: fechada com */ }
