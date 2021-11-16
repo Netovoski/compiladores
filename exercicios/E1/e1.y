@@ -73,40 +73,6 @@ char *iden_dum;
 %%
 program: declaration-list;
 declaration-list: declaration-list declaration | declaration;
-declaration: var-declaration | fun-declaration;
-var-declaration: type-specifier ID T_SEMICOLON | type-specifier ID T_LEFTBRACKET NUM T_RIGHTBRACKET T_SEMICOLON;
-type-specifier: INT | FLOAT | VOID;
-fun-declaration: type-specifier ID T_LEFTPAREN params T_RIGHTPAREN compound-stmt;
-params: param-list | VOID;
-param-list: param-list T_COMMA param | param;
-param: type-specifier ID | type-specifier ID T_LEFTBRACKET T_RIGHTBRACKET;
-compound-stmt: T_LEFTBRACE local-declarations statement-list T_RIGHTBRACE;
-local-declarations: local-declarations var-declaration | %empty;
-statement-list: statement-list statement | %empty;
-statement: expression-stmt | compound-stmt | selection-stmt | iteration-stmt |
-return-stmt;
-expression-stmt: expression T_SEMICOLON | T_SEMICOLON;
-
-selection-stmt: 
-                IF T_LEFTPAREN expression T_RIGHTPAREN selection-stmt
- 
-                | IF T_LEFTPAREN expression T_RIGHTPAREN statement ELSE statement
-;
-
-iteration-stmt: WHILE T_LEFTPAREN expression T_RIGHTPAREN statement;
-return-stmt: RETURN T_SEMICOLON | RETURN expression T_SEMICOLON;
-expression: var T_ASSIGNMENT expression | simple-expression;
-var: ID | ID T_LEFTBRACKET expression T_RIGHTBRACKET;
-simple-expression: additive-expression relop additive-expression | additive-expression;
-relop: T_LESSER | T_LESSEQUAL | T_GREATER | T_GREATEREQUAL | T_EQUAL | T_NOTEQUAL;
-additive-expression: additive-expression addop term | term;
-addop: T_PLUS | T_MINUS;
-term: term mulop factor | factor;
-mulop: T_MULTIPLICATION | T_DIVISION;
-factor: T_LEFTPAREN expression T_RIGHTPAREN | var | call | NUM;
-call: ID T_LEFTPAREN args T_RIGHTPAREN;
-args: arg-list | %empty;
-arg-list: arg-list T_COMMA expression | expression;
 
 %%
 
